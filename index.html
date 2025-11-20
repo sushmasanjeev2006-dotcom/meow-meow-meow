@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Princess Portal — Shub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- wallpaper & overlays -->
+  <div class="bg-wallpaper" aria-hidden="true"></div>
+  <div class="neon-overlay" aria-hidden="true"></div>
+  <div id="particles" aria-hidden="true"></div>
+
+  <!-- audio (toggleable) -->
+  <div class="audio-toggle">
+    <button id="audioToggle" class="btn-audio" title="Toggle background music">🔈</button>
+    <audio id="bgAudio" loop crossorigin="anonymous"></audio>
+  </div>
+
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">ENIGMA PORTAL</div>
+        <div class="tag">Neon Cyber-Pink • Re:Zero hint</div>
+      </div>
+      <div class="meta">Player: <strong id="playerName">Shub</strong></div>
+    </header>
+
+    <section class="main-card">
+
+      <!-- LOGIN VIEW -->
+      <div id="view-login" class="view active">
+        <h1 class="title">Enter The Portal</h1>
+        <p class="muted">A soft anime login — use credentials below</p>
+
+        <div class="form card">
+          <label class="lbl">Username</label>
+          <input id="loginUser" class="fld" placeholder="Shub@princess" spellcheck="false">
+
+          <label class="lbl">Password</label>
+          <input id="loginPass" class="fld" type="password" placeholder="Fast-text">
+
+          <div class="row gap">
+            <button id="btnLogin" class="btn primary">Enter</button>
+            <button id="btnDemo" class="btn ghost">Demo</button>
+          </div>
+
+          <p id="loginError" class="muted error" aria-live="polite" style="display:none"></p>
+
+          <div class="note muted">Username: <code>Shub@princess</code> • Password: <code>Fast-text</code></div>
+        </div>
+      </div>
+
+      <!-- Stage 1: Gym & Re:Zero -->
+      <div id="view-stage1" class="view">
+        <h2 class="section-title">Stage 1 — Gym & Re:Zero</h2>
+        <div class="card">
+          <div id="qList" class="q-list"></div>
+          <div class="row" style="margin-top:12px">
+            <button id="btnStage1Next" class="btn primary">Submit Answers</button>
+            <button id="btnStage1Skip" class="btn ghost">Skip</button>
+          </div>
+          <p id="stage1Note" class="muted stage-note"></p>
+        </div>
+      </div>
+
+      <!-- Stage 2: Tic-Tac-Toe vs AI -->
+      <div id="view-ttt" class="view">
+        <h2 class="section-title">Stage 2 — Duel: Tic-Tac-Toe</h2>
+        <div class="card">
+          <div id="tttBoard" class="ttt-grid" role="grid" aria-label="Tic tac toe board"></div>
+          <div class="row" style="margin-top:12px">
+            <button id="btnTttReset" class="btn ghost">Reset</button>
+            <button id="btnTttNext" class="btn primary">Continue</button>
+          </div>
+          <p id="tttStatus" class="muted stage-note"></p>
+        </div>
+      </div>
+
+      <!-- Stage 3: Scratch card to reveal bracelet -->
+      <div id="view-scratch" class="view">
+        <h2 class="section-title">Stage 3 — Reveal the Bracelet</h2>
+        <div class="card">
+          <p class="muted">Scratch the surface (mouse or touch). At ~65% cleared the bracelet is revealed.</p>
+          <div class="scratch-wrap">
+            <img id="braceletUnder" class="bracelet-under" alt="bracelet under" />
+            <canvas id="scratchCanvas" class="scratch-canvas" aria-label="Scratch card"></canvas>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button id="btnScratchReset" class="btn ghost">Reset Scratch</button>
+            <button id="btnScratchNext" class="btn primary" disabled>Continue</button>
+          </div>
+          <p id="scratchNote" class="muted stage-note"></p>
+        </div>
+      </div>
+
+      <!-- Stage 4: Inside jokes & heart -->
+      <div id="view-jokes" class="view">
+        <h2 class="section-title">Stage 4 — Inside Jokes & Heart</h2>
+        <div class="card">
+          <ul class="jokes">
+            <li>"Yes, you are princess"</li>
+            <li>"Zyada uda na karo janab"</li>
+            <li>"Jaldi reply kar diya karo"</li>
+          </ul>
+
+          <label class="lbl" style="margin-top:12px">Short heart message (appears on certificate)</label>
+          <textarea id="heartText" class="fld" rows="3">Whenever you feel low, I will always listen — Princess</textarea>
+
+          <div class="row" style="margin-top:12px">
+            <button id="btnJokesNext" class="btn primary">Lock & Continue</button>
+            <button id="btnJokesBack" class="btn ghost">Back</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate -->
+      <div id="view-cert" class="view">
+        <h2 class="section-title">Final — Certificate</h2>
+        <div class="card cert-card">
+          <canvas id="certCanvas" width="1200" height="900" class="cert-canvas" role="img"></canvas>
+          <div class="row" style="margin-top:12px">
+            <button id="btnDownloadCert" class="btn primary">Download PNG</button>
+            <button id="btnRestart" class="btn ghost">Restart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final warning -->
+      <div id="view-warning" class="view">
+        <h2 class="section-title">Final Notice</h2>
+        <div class="card">
+          <p class="muted">“Reply kar diya karo jaldi, nahi toh maar khaoge!”</p>
+          <div class="row" style="margin-top:12px">
+            <button id="btnWarningFinish" class="btn primary">Finish</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="footer muted">Made with care • Neon cyber-pink • Re:Zero hint</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
