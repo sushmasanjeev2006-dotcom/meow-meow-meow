@@ -1,0 +1,87 @@
+:root{
+  --bg:#03030a;
+  --neon-blue:#34d1ff;
+  --neon-pink:#ff6fb5;
+  --glass: rgba(255,255,255,0.03);
+  --muted: rgba(255,255,255,0.78);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, Poppins, system-ui, -apple-system;background:var(--bg);color:#fff}
+
+/* wallpaper */
+.bg-wallpaper{
+  position:fixed; inset:0;
+  background: url('https://static.animecorner.me/2023/07/rezero-s3-scaled.jpg') center/cover no-repeat;
+  filter: blur(56px) brightness(0.16) saturate(1.08);
+  transform: scale(1.04);
+  z-index:-4;
+}
+.neon-overlay{
+  position:fixed; inset:0;
+  background: radial-gradient(circle at 20% 10%, rgba(63,209,255,0.06), rgba(255,111,181,0.06) 32%, rgba(0,0,0,0.76));
+  z-index:-3;
+}
+#particles{ position:fixed; inset:0; background-image:url('https://i.ibb.co/1ZVw4Kr/particles.png'); opacity:0.16; mix-blend-mode:screen; z-index:-2; animation: drift 28s linear infinite}
+@keyframes drift{ from{ transform:translateY(0)} to{ transform:translateY(-120vh)} }
+
+/* main layout */
+.topbar{ display:flex; justify-content:space-between; align-items:center; padding:18px 28px; position:relative; z-index:5 }
+.logo{ font-family:Orbitron, monospace; color:var(--neon-blue); font-weight:700; letter-spacing:1.2px }
+.tag{ color:var(--muted); font-size:13px }
+.meta{ color:var(--muted); font-size:14px }
+
+.app{ max-width:1100px; margin:6vh auto; padding:0 18px; z-index:4; position:relative }
+.main-card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); border-radius:14px; padding:22px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 16px 60px rgba(0,0,0,0.6) }
+
+/* view and headings */
+.view{ display:none }
+.view.active, .view:not(.active) { display:block } /* container-level; we'll control via JS */
+.title{ font-family:Orbitron, monospace; color:var(--neon-pink); text-align:center; font-size:22px; margin-bottom:6px; text-shadow:0 0 12px rgba(255,111,181,0.45) }
+.section-title{ font-family:Orbitron, monospace; color:var(--neon-blue); margin-bottom:10px }
+
+/* cards & forms */
+.card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.03) }
+.muted{ color:var(--muted) }
+.muted.stage-note{ margin-top:10px; color:#dcd6df; font-size:13px }
+.lbl{ display:block; font-size:13px; color:#ffe6f6; margin-top:8px; font-weight:600 }
+.fld{ width:100%; padding:10px; border-radius:10px; border:none; background: rgba(255,255,255,0.03); color:#fff; margin-top:6px; outline:none }
+
+/* buttons */
+.btn{ padding:10px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:700 }
+.btn.primary{ background: linear-gradient(90deg,var(--neon-pink), var(--neon-blue)); color:#021; box-shadow: 0 12px 30px rgba(63,209,255,0.06) }
+.btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted) }
+
+.row{ display:flex; gap:10px; flex-wrap:wrap }
+.gap{ margin-top:12px }
+
+/* q-list */
+.q-list{ display:flex; flex-direction:column; gap:8px; margin-top:8px }
+.q-item{ padding:10px; border-radius:8px; background:rgba(255,255,255,0.02); display:flex; justify-content:space-between; align-items:center; }
+.q-item select{ padding:8px; border-radius:8px }
+
+/* tic tac toe */
+.ttt-grid{ width:340px; height:340px; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:10px auto }
+.ttt-grid .cell{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:44px; cursor:pointer; user-select:none }
+
+/* scratch */
+.scratch-wrap{ position:relative; width:360px; height:220px; margin:12px auto; border-radius:12px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.5) }
+.bracelet-under{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; z-index:0 }
+.scratch-canvas{ position:absolute; inset:0; z-index:2; touch-action:none; }
+
+/* certificate canvas */
+.cert-canvas{ width:100%; max-width:900px; display:block; margin:12px auto; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.6) }
+
+/* audio toggle */
+.audio-toggle{ position:fixed; right:18px; bottom:18px; z-index:60 }
+.btn-audio{ padding:10px 12px; border-radius:12px; background:linear-gradient(90deg,var(--neon-pink),var(--neon-blue)); border:none; color:#021; cursor:pointer; font-weight:700 }
+
+/* footer */
+.footer{ text-align:center; font-size:13px; color:var(--muted); margin-top:18px }
+
+/* responsive */
+@media(max-width:720px){
+  .ttt-grid{ width:260px; height:260px }
+  .scratch-wrap{ width:92%; height:200px }
+  .main-card{ padding:16px }
+  .app{ margin:3vh auto; }
+}
